@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Remove stupid charon.pid to avoid weird issue where docker refuses to start
+rm -f /var/run/charon.pid
+
 sysctl -w net.ipv4.conf.all.rp_filter=2
 
 iptables --table nat --append POSTROUTING --jump MASQUERADE
